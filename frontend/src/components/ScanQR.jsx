@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import QrAnimation from "./QrAnimation";
 
 function ScanQR() {
+  const[isQrScanned, setIsQrScanned] = useState(false)
+  
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-800 h-screen">
-      <h1 className="font-thin text-white text-6xl px-6 py-10">
-          Scan QR Code
-        </h1>
-      <button className="h-12 px-6 m-2 text-lg text-indigo-100 transition-colors focus:ring-4 focus:ring-slate-500 duration-150 bg-gray-900 rounded-lg focus:shadow-outline hover:bg-gray-950">
-        Scan QR
-      </button>
+    <div className="flex justify-center items-start w-screen min-h-screen h-fit bg-gray-5">
+      {/* left part */}
+      <div className="no-scrollbar w-[50%] h-screen overflow-y-scroll">
+        <div className=" flex flex-col w-full min-h-screen h-fit py-8 justify-center items-center gap-y-4 ">
+          {/* heading */}
+          <h1 className="flex justify-center font-semibold text-black text-2xl">
+            Scan QR Code
+          </h1>
+
+          {/* form and button */}
+          <div className="w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5">
+            
+          </div>
+        </div>
+      </div>
+
+      <QrAnimation />
     </div>
   );
 }

@@ -1,0 +1,28 @@
+.course-label {
+    @apply flex flex-col gap-y-2 items-start relative
+}
+.course-label p {
+    @apply text-[15px] text-black pl-0.5
+}
+.course-input {
+    @apply w-full h-[33px] bg-gray-5 rounded-[8px] border border-gray-25 border-opacity-50
+     px-3 text-[13px] text-black
+}
+.course-error {
+    @apply text-[13px] text-red-5 absolute -bottom-5 left-1
+}
+.btn {
+    @apply h-[40px] w-fit min-w-[140px] px-2 rounded-[10px] bg-black text-white cursor-pointer text-[13px] hover:bg-opacity-80 hover:border hover:border-black transition-all duration-300
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}

@@ -1,91 +1,142 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import QrAnimation from "./QrAnimation";
 
 function GenerateQR() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   return (
-    <div className="bg-gray-800 h-screen">
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="flex justify-center font-thin text-white text-6xl mx-auto my-auto px-6 py-10">
-          Generate QR Code
-        </h1>
-        <div className="w-[400px] border-2 border-gray-900 duration-500 hover:border-gray-950 border-solid rounded-3xl p-3">
-          <form className="flex flex-col font-thin" action="">
-            <div className="flex justify-between px-2 py-2">
-              <label className=" text-white" htmlFor="employeecode">
-                Employee Code :
-              </label>
-              <input
-                id="employeecode"
-                className="border-none rounded-2xl px-2 py-2 hover:opacity-90 transition-opacity duration-150"
-                type="text"
-                placeholder="Employee Code"
-              />
-            </div>
+    <div className="flex justify-center items-start w-screen min-h-screen h-fit bg-gray-5">
 
-            <div className="flex justify-between px-2 py-2">
-              <label className=" text-white" htmlFor="name">
-                Name :
-              </label>
-              <input
-                id="name"
-                className="border rounded-2xl px-2 py-2 hover:opacity-90 transition-opacity duration-150"
-                type="text"
-                placeholder="Name"
-              />
-            </div>
+      {/* left part */}
+      <div className="no-scrollbar w-[50%] h-screen overflow-y-scroll">
+        <div className=" flex flex-col w-full min-h-screen h-fit py-8 justify-center items-center gap-y-4 ">
+          
+          {/* heading */}
+          <h1 className="flex justify-center font-semibold text-black text-2xl">
+            Generate QR Code
+          </h1>
 
-            <div className="flex justify-between px-2 py-2">
-              <label className=" text-white" htmlFor="licenceno">
-                Vehicle Licence No. :
+          {/* form and button */}
+          <div className="w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5">
+            <form className="w-full flex flex-col gap-y-5 p-5">
+              {/* employee code */}
+              <label className="course-label">
+                <p>Employee Code</p>
+                <input
+                  type="text"
+                  id="employeeCode"
+                  name="employeeCode"
+                  {...register("employeeCode", { required: true })}
+                  className="course-input"
+                  placeholder="Enter Employee Code"
+                />
+                {errors.employeeCode && (
+                  <span className="course-error">
+                    Please enter Employee Code
+                  </span>
+                )}
               </label>
-              <input
-                id="licenceno"
-                className="border rounded-2xl px-2 py-2 hover:opacity-90 transition-opacity duration-150"
-                type="text"
-                placeholder="Vehicle Licence No."
-              />
-            </div>
 
-            <div className="flex justify-between px-2 py-2">
-              <label className=" text-white" htmlFor="rcno">
-                Vehicle RC No. :
+              {/* name */}
+              <label className="course-label">
+                <p>Employee Name</p>
+                <input
+                  type="text"
+                  id="employeeName"
+                  name="employeeName"
+                  {...register("employeeName", { required: true })}
+                  className="course-input"
+                  placeholder="Enter Employee Name"
+                />
+                {errors.employeeName && (
+                  <span className="course-error">
+                    Please enter Employee Name
+                  </span>
+                )}
               </label>
-              <input
-                id="rcno"
-                className="border rounded-2xl px-2 py-2 hover:opacity-90 transition-opacity duration-150"
-                type="text"
-                placeholder="Vehicle RC No."
-              />
-            </div>
 
-            <div className="flex justify-between px-2 py-2">
-              <label className=" text-white" htmlFor="insuranceno">
-                Vehicle Insurance :
+              {/* Lisence no. */}
+              <label className="course-label">
+                <p>License Number</p>
+                <input
+                  type="text"
+                  id="licensenumber"
+                  name="licensenumber"
+                  {...register("licensenumber", { required: true })}
+                  className="course-input"
+                  placeholder="Enter License Number"
+                />
+                {errors.licensenumber && (
+                  <span className="course-error">
+                    Please enter License Number
+                  </span>
+                )}
               </label>
-              <input
-                id="insuranceno"
-                className="border rounded-2xl px-2 py-2 hover:opacity-90 transition-opacity duration-150"
-                type="text"
-                placeholder="Vehicle Insurance"
-              />
-            </div>
 
-            <div className="flex justify-between px-2 py-2">
-              <label className=" text-white" htmlFor="puc">
-                Vehicle PUC :
+              {/* Insurance no */}
+              <label className="course-label">
+                <p>Insurance Number</p>
+                <input
+                  type="text"
+                  id="insuranceNumber"
+                  name="insuranceNumber"
+                  {...register("insuranceNumber", { required: true })}
+                  className="course-input"
+                  placeholder="Enter Insurance Number"
+                />
+                {errors.insuranceNumber && (
+                  <span className="course-error">
+                    Please enter Insurance Number
+                  </span>
+                )}
               </label>
-              <input
-                id="puc"
-                className="border rounded-2xl px-2 py-2 hover:opacity-90 transition-opacity duration-150"
-                type="text"
-                placeholder="Vehicle PUC"
-              />
-            </div>
-            <button className="h-12 px-6 m-2 text-lg text-indigo-100 transition-colors focus:ring-4 focus:ring-slate-500 duration-150 bg-gray-900 rounded-lg focus:shadow-outline hover:bg-gray-950">
-              Generate QR
-            </button>
-          </form>
+
+              {/* Number plate */}
+              <label className="course-label">
+                <p>Number plate</p>
+                <input
+                  type="text"
+                  id="numberPlate"
+                  name="numberPlate"
+                  {...register("numberPlate", { required: true })}
+                  className="course-input"
+                  placeholder="Enter Number plate"
+                />
+                {errors.numberPlate && (
+                  <span className="course-error">
+                    Please enter Number plate
+                  </span>
+                )}
+              </label>
+
+              {/* PUC */}
+              <label className="course-label">
+                <p>PUC</p>
+                <input
+                  type="text"
+                  id="puc"
+                  name="puc"
+                  {...register("puc", { required: true })}
+                  className="course-input"
+                  placeholder="Enter PUC"
+                />
+                {errors.puc && (
+                  <span className="course-error">Please enter PUC</span>
+                )}
+              </label>
+
+              {/* button */}
+              <button className="btn h-[33px] w-full">Generate QR</button>
+            </form>
+          </div>
         </div>
       </div>
+
+      <QrAnimation />
     </div>
   );
 }
