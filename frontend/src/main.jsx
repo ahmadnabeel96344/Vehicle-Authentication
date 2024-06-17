@@ -6,6 +6,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Home from './components/Home.jsx'
 import GenerateQR from './components/GenerateQR.jsx'
 import ScanQR from './components/ScanQR.jsx'
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,5 +21,6 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Toaster />
   </React.StrictMode>,
 )
