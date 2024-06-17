@@ -4,6 +4,7 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 import { fetchEVInfo } from "../services/operations/employeeVehicle";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import deniedPNG from "../assets/denied.png"
 function ScanQR() {
   const [isQrScanned, setIsQrScanned] = useState(null);
   const [updateScanner, setUpdateScanner] = useState(false);
@@ -111,12 +112,17 @@ function ScanQR() {
 
 {isQrScanned?.employeeCode === null ||
                   isQrScanned?.employeeCode === undefined && (
-                    <div className="w-[90%] min-h-[400px] h-fit py-4 bg-red-5 bg-opacity-20 rounded-[10px] border-2 border-red-5  flex flex-col gap-y-2 ">
+                    <div className="w-[90%] min-h-[400px] h-fit py-4 bg-red-5 bg-opacity-20 rounded-[10px] border-2 border-red-5  flex flex-col gap-y-2 justify-between ">
                       <p className="text-[24px] font-bold font-sans text-red-5 w-full text-center flex justify-center items-center gap-x-2">
                         Access Denied
                         <RiVerifiedBadgeFill className="text-[30px]" />
                       </p>
 
+                      <p className="text-[16px] w-full text-center font-sans font-semibold text-red-5">Employee Vehicle not registered.Please try again.</p>
+
+                       <div className="w-full h-[200px] flex justify-center items-center">
+                       <img src={deniedPNG} className="w-[200px] h-[200px]" />
+                       </div>
                     </div>
                   )}
 
