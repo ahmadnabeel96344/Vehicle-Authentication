@@ -2,30 +2,22 @@ import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import QrAnimation from "./QrAnimation";
 // import QRCode from 'qrcode'
-import QRCode from 'qrcode.react';
+import { QRCodeCanvas } from "qrcode.react";
 import { addEmployeeVehicle } from "../services/operations/employeeVehicle";
+import { useNavigate } from "react-router-dom";
 
 function GenerateQR() {
   const {
     handleSubmit,
     register,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const [isVehicleAdded, setIsVehicleAdded] = useState(null);
   const [loading, setLoading] = useState(false);
   const canvasRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (canvasRef && canvasRef.current !== null) {
-  //     const canvas = canvasRef.current;
-
-  //     canvas.height = "400px";
-  //     canvas.width = "400px";
-
-
-  //   }
-  // }, [isVehicleAdded]);
+  const navigate = useNavigate();
 
   const emailPattern =
     /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@alokind\.com$/;
@@ -50,16 +42,37 @@ function GenerateQR() {
 
     const result = await addEmployeeVehicle(formData);
     console.log(result);
-    if(result){
-       setIsVehicleAdded(result?.employeeCode);
+    if (result) {
+      setIsVehicleAdded(result?.employeeCode);
     }
 
     setLoading(false);
   };
 
-  const downloadQR = () => {
+  const downloadQRCode = () => {
+    const qrCodeURL = document
+      .getElementById("qrCodeEl")
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    console.log(qrCodeURL);
+    let aEl = document.createElement("a");
+    aEl.href = qrCodeURL;
+    aEl.download = "QR_Code.png";
+    document.body.appendChild(aEl);
+    aEl.click();
+    document.body.removeChild(aEl);
+  };
 
-  }
+  const resetForm = () => {
+    setValue("employeeCode", "");
+    setValue("employeeName", "");
+    setValue("employeeEmail", "");
+    setValue("licenseNumber", "");
+    setValue("insuranceNumber", "");
+    setValue("numberPlate", "");
+    setValue("vehicleType", "");
+    setValue("puc", "");
+  };
 
   return (
     <div className="flex justify-center items-start w-screen min-h-screen h-fit bg-gray-5">
@@ -261,25 +274,55 @@ function GenerateQR() {
                 </label>
 
                 {/* button */}
-                <button className="btn h-[33px] w-full">Generate QR</button>
+                <div className="w-full flex flex-col justify-center items-center gap-y-5 ">
+                  <button type="submit" className="btn h-[33px] w-[100%]">
+                    Generate QR
+                  </button>
+
+                  <div className="w-[70%] flex items-center justify-center gap-x-3">
+                    <div className="w-full h-[1px] bg-gray-25"></div>
+                    <p className="text-[15px] text-gray-25">OR</p>
+                    <div className="w-full h-[1px] bg-gray-25"></div>
+                  </div>
+
+                  <button
+                    onClick={() => navigate("/scanqr")}
+                    className="btn h-[33px] w-[100%]"
+                  >
+                    Scan QR
+                  </button>
+                </div>
               </form>
             </div>
           )}
 
           {isVehicleAdded !== null && (
             <div className="w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5">
-            <div className="w-full h-[450px] flex justify-center items-center">
-              <QRCode id="" value={isVehicleAdded} bgColor="#FFFFFF" fgColor="#000" size={"250"} />
-            {/* <canvas
-                ref={canvasRef}
-                className="bg-gray-25 "
-              /> */}
-            </div>
+              <div className="w-full h-[450px] flex justify-center items-center">
+                <QRCodeCanvas
+                  ref={canvasRef}
+                  value={String(isVehicleAdded)}
+                  bgColor="#FFFFFF"
+                  fgColor="#000000"
+                  size={250}
+                  id="qrCodeEl"
+                />
+              </div>
 
-            <div className="w-full h-[80px] flex items-center justify-center gap-x-5">
-              <button onClick={() => setIsVehicleAdded(null)} className="btn">Back</button>
-              <button onClick={downloadQR} className="btn">Download</button>
-            </div>
+              <div className="w-full h-[80px] flex items-center justify-center gap-x-5">
+                <button
+                  onClick={() => {
+                    setIsVehicleAdded(null);
+                    resetForm();
+                  }}
+                  className="btn"
+                >
+                  Back
+                </button>
+                <button onClick={downloadQRCode} className="btn">
+                  Download
+                </button>
+              </div>
             </div>
           )}
         </div>

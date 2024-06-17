@@ -26,3 +26,7 @@
     scrollbar-width: none;
     /* Firefox */
 }
+
+.employee-details {
+    @apply w-full flex items-center gap-x-2 text-[16px] font-sans  pl-2 font-semibold
+}
