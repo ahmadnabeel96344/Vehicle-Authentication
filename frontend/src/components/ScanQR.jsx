@@ -4,7 +4,7 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 import { fetchEVInfo } from "../services/operations/employeeVehicle";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import deniedPNG from "../assets/denied.png"
+import deniedPNG from "../assets/denied.png";
 function ScanQR() {
   const [isQrScanned, setIsQrScanned] = useState(null);
   const [updateScanner, setUpdateScanner] = useState(false);
@@ -110,21 +110,25 @@ function ScanQR() {
                     </div>
                   )}
 
-{isQrScanned?.employeeCode === null ||
-                  isQrScanned?.employeeCode === undefined && (
-                    <div className="w-[90%] min-h-[400px] h-fit py-4 bg-red-5 bg-opacity-20 rounded-[10px] border-2 border-red-5  flex flex-col gap-y-2 justify-between ">
+                {isQrScanned?.employeeCode === null ||
+                  (isQrScanned?.employeeCode === undefined && (
+                    <div className="w-[90%] min-h-[400px] h-fit py-4 bg-red-5 bg-opacity-20 rounded-[10px] border-2 border-red-5  flex flex-col gap-y-2 justify-start">
                       <p className="text-[24px] font-bold font-sans text-red-5 w-full text-center flex justify-center items-center gap-x-2">
                         Access Denied
-                        <RiVerifiedBadgeFill className="text-[30px]" />
+                        <div className="w-[30px] h-[30px] flex justify-center items-center">
+                        <img src={deniedPNG} className="h-[30px] object-cover" />
+                      </div>
                       </p>
 
-                      <p className="text-[16px] w-full text-center font-sans font-semibold text-red-5">Employee Vehicle not registered.Please try again.</p>
+                      <p className="text-[16px] w-full text-center font-sans font-semibold text-red-5">
+                        Employee Vehicle not registered.Please try again.
+                      </p>
 
-                       <div className="w-full h-[200px] flex justify-center items-center">
-                       <img src={deniedPNG} className="w-[200px] h-[200px]" />
-                       </div>
+                      {/* <div className="w-full h-[200px] flex justify-center items-center">
+                        <img src={deniedPNG} className="w-[200px] h-[200px]" />
+                      </div> */}
                     </div>
-                  )}
+                  ))}
 
                 <div className="w-full h-[80px] flex justify-center items-center gap-x-4">
                   <button
@@ -144,7 +148,7 @@ function ScanQR() {
               <div className="w-full h-[80px] flex flex-col justify-center items-center my-5 gap-5">
                 <div className="w-[70%] flex items-center justify-center gap-x-3">
                   <div className="w-full h-[1px] bg-gray-25"></div>
-                      <p className="text-[15px] text-gray-25">OR</p>
+                  <p className="text-[15px] text-gray-25">OR</p>
                   <div className="w-full h-[1px] bg-gray-25"></div>
                 </div>
                 <button onClick={() => navigate("/generateqr")} className="btn">

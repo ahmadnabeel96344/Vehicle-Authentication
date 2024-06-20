@@ -16,7 +16,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({extended:true, limit:"16kb"}))
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5173",  // Removed trailing slash
+    origin: "https://vehicle-authentication.vercel.app",  // Removed trailing slash
     credentials: true,
 }));
 
