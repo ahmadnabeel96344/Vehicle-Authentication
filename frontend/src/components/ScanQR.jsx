@@ -20,7 +20,7 @@ function ScanQR() {
 
     async function success(result) {
       scanner.clear();
-      console.log("EmployeeID- ", result);
+      // console.log("EmployeeID- ", result);
       const employeeCode = Number(result);
 
       const response = await fetchEVInfo(employeeCode);
