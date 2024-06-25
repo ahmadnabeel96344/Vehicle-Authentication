@@ -12,7 +12,7 @@ const QrAnimation = () => {
   },[path])
   return (
     
-    <div className="w-[50%] min-h-screen h-full flex flex-col items-center justify-center gap-y-5 bg-black">
+    <div className="w-[50%] min-h-screen h-full hidden lg:flex flex-col items-center justify-center gap-y-5 bg-black">
     {/* QR img */}
     {
       page === "/" ? (

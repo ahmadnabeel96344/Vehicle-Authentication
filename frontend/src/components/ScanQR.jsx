@@ -41,7 +41,7 @@ function ScanQR() {
   return (
     <div className="flex justify-center items-start w-screen min-h-screen h-fit bg-gray-5">
       {/* left part */}
-      <div className="no-scrollbar w-[50%] h-screen overflow-y-scroll">
+      <div className="no-scrollbar w-full  lg:w-[50%] h-screen overflow-y-scroll">
         <div className=" flex flex-col w-full min-h-screen h-fit py-8 justify-center items-center gap-y-4 ">
           {/* heading */}
           <h1 className="flex justify-center font-semibold text-black text-2xl">
@@ -50,7 +50,7 @@ function ScanQR() {
 
           {/* form and button */}
           <div
-            className={`w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5 flex justify-center items-center ${
+            className={`w-[95%] md:w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5 flex justify-center items-center ${
               isQrScanned === null ? "flex-col" : "flex-row"
             }`}
           >
@@ -60,7 +60,7 @@ function ScanQR() {
               <div className="w-full h-fit flex flex-col gap-y-3 justify-center items-center ">
                 {isQrScanned?.employeeCode !== null &&
                   isQrScanned?.employeeCode !== undefined && (
-                    <div className="w-[90%] min-h-[400px] h-fit py-4 bg-green-5 bg-opacity-20 rounded-[10px] border-2 border-green-25 flex flex-col gap-y-2 ">
+                    <div className="w-[90%] min-h-[400px] h-fit py-4 bg-green-5 bg-opacity-20 rounded-[10px] border-2 border-green-25 flex flex-col gap-y-2 overflow-scroll no-scrollbar my-3 ">
                       <p className="text-[24px] font-bold font-sans text-green-25 w-full text-center flex justify-center items-center gap-x-2">
                         Access Granted
                         <RiVerifiedBadgeFill className="text-[30px]" />
@@ -68,43 +68,43 @@ function ScanQR() {
 
                       <div className="w-full flex flex-col gap-y-2 my-5">
                         <p className="employee-details">
-                          <span>Employee Code</span>
-                          <span>{isQrScanned?.employeeCode}</span>
+                          <span className="text-nowrap   ">Employee Code : </span>
+                          <span className="text-wrap ">{isQrScanned?.employeeCode}</span>
                         </p>
 
                         <p className="employee-details">
-                          <span>Employee Name</span>
-                          <span>{isQrScanned?.employeeName}</span>
+                          <span className="text-nowrap   ">Employee Name : </span>
+                          <span className="text-wrap ">{isQrScanned?.employeeName}</span>
                         </p>
 
                         <p className="employee-details">
-                          <span>Employee Email</span>
-                          <span>{isQrScanned?.employeeEmail}</span>
+                          <span className="text-nowrap   ">Employee Email : </span>
+                          <span className="text-wrap ">{isQrScanned?.employeeEmail}</span>
                         </p>
 
                         <p className="employee-details">
-                          <span>License Number</span>
-                          <span>{isQrScanned?.licenseNumber}</span>
+                          <span className="text-nowrap   ">License Number : </span>
+                          <span className="text-wrap ">{isQrScanned?.licenseNumber}</span>
                         </p>
 
                         <p className="employee-details">
-                          <span>Insurance Number</span>
-                          <span>{isQrScanned?.insuranceNumber}</span>
+                          <span className="text-nowrap   ">Insurance Expiry: </span>
+                          <span className="text-wrap ">{isQrScanned?.insuranceExpiry}</span>
                         </p>
 
                         <p className="employee-details">
-                          <span>Vehicle Number</span>
-                          <span>{isQrScanned?.vehicleNumber}</span>
+                          <span className="text-nowrap   ">Vehicle Number : </span>
+                          <span className="text-wrap ">{isQrScanned?.vehicleNumber}</span>
                         </p>
 
                         <p className="employee-details">
-                          <span>Vehicle Type</span>
-                          <span>{isQrScanned?.vehicleType}</span>
+                          <span className="text-nowrap   ">Vehicle Type : </span>
+                          <span className="text-wrap ">{isQrScanned?.vehicleType}</span>
                         </p>
 
                         <p className="employee-details">
-                          <span>PUC</span>
-                          <span>{isQrScanned?.puc}</span>
+                          <span className="text-nowrap   ">PUC Expiry : </span>
+                          <span className="text-wrap ">{isQrScanned?.pucExpiry}</span>
                         </p>
                       </div>
                     </div>

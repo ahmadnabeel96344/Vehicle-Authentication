@@ -33,15 +33,15 @@ function GenerateQR() {
         employeeName: data.employeeName,
         employeeEmail: data.employeeEmail,
         licenseNumber: data.licenseNumber,
-        insuranceNumber: data.insuranceNumber,
+        insuranceExpiry: data.insuranceNumber,
         vehicleNumber: data.numberPlate,
-        puc: data.puc,
+        pucExpiry: data.puc,
         vehicleType: data.vehicleType,
       },
     };
 
     const result = await addEmployeeVehicle(formData);
-    console.log(result);
+    // console.log(result);
     if (result) {
       setIsVehicleAdded(result?.employeeCode);
     }
@@ -77,7 +77,7 @@ function GenerateQR() {
   return (
     <div className="flex justify-center items-start w-screen min-h-screen h-fit bg-gray-5">
       {/* left part */}
-      <div className="no-scrollbar w-[50%] h-screen overflow-y-scroll">
+      <div className="no-scrollbar w-full lg:w-[50%] h-screen overflow-y-scroll">
         <div className=" flex flex-col w-full min-h-screen h-fit py-8 justify-center items-center gap-y-4 ">
           {/* heading */}
           <h1 className="flex justify-center font-semibold text-black text-2xl">
@@ -85,7 +85,7 @@ function GenerateQR() {
           </h1>
 
           {isVehicleAdded === null && (
-            <div className="w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5">
+            <div className="w-[95%] md:w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5">
               <form
                 onSubmit={handleSubmit(finalSubmit)}
                 className="w-full flex flex-col gap-y-5 p-5"
@@ -186,23 +186,22 @@ function GenerateQR() {
                 {/* Insurance no */}
                 <label className="course-label">
                   <p>
-                    Insurance Number{" "}
+                    Insurance Expiry{" "}
                     <span className="text-[14px] text-red-5">*</span>
                   </p>
                   <input
-                    type="text"
+                    type="date"
                     id="insuranceNumber"
                     name="insuranceNumber"
                     {...register("insuranceNumber", {
-                      required: true,
-                      pattern: validPattern,
+                      required: true
                     })}
                     className="course-input"
                     placeholder="Enter Insurance Number"
                   />
                   {errors.insuranceNumber && (
                     <span className="course-error">
-                      Please enter a valid Insurance Number
+                      Please enter a valid Insurance Expiry
                     </span>
                   )}
                 </label>
@@ -231,7 +230,7 @@ function GenerateQR() {
                   )}
                 </label>
 
-                {/* Number plate */}
+                {/* Vehicle  Type */}
                 <label className="course-label">
                   <p>
                     Vehicle Type{" "}
@@ -258,10 +257,10 @@ function GenerateQR() {
                 {/* PUC */}
                 <label className="course-label">
                   <p>
-                    PUC <span className="text-[14px] text-red-5">*</span>
+                    PUC Expiry <span className="text-[14px] text-red-5">*</span>
                   </p>
                   <input
-                    type="text"
+                    type="date"
                     id="puc"
                     name="puc"
                     {...register("puc", { required: true })}
@@ -269,7 +268,7 @@ function GenerateQR() {
                     placeholder="Enter PUC"
                   />
                   {errors.puc && (
-                    <span className="course-error">Please enter PUC</span>
+                    <span className="course-error">Please enter PUC Expiry</span>
                   )}
                 </label>
 
@@ -297,7 +296,7 @@ function GenerateQR() {
           )}
 
           {isVehicleAdded !== null && (
-            <div className="w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5">
+            <div className="w-[95%] md:w-[80%] h-fit min-h-[600px] bg-white rounded-[10px] shadow-md border-2 border-gray-5">
               <div className="w-full h-[450px] flex justify-center items-center">
                 <QRCodeCanvas
                   ref={canvasRef}

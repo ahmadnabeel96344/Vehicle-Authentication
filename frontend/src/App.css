@@ -28,5 +28,5 @@
 }
 
 .employee-details {
-    @apply w-full flex items-center gap-x-2 text-[16px] font-sans  pl-2 font-semibold
+    @apply min-w-full w-fit flex items-center gap-x-2 text-[12px] sm:text-[16px] font-sans  pl-2 font-semibold py-2 border-b border-b-green-25
 }

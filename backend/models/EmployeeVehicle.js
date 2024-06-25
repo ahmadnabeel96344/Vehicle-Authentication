@@ -4,7 +4,8 @@ const employeeVehicleSchema = new mongoose.Schema(
     {
         employeeCode:{
             type:Number,
-            required:[true, "Please add employee code."]
+            required:[true, "Please add employee code."],
+            unique: true
         },
         employeeName:{
             type:String,
@@ -18,16 +19,10 @@ const employeeVehicleSchema = new mongoose.Schema(
             type:String,
             required:[true, "Please add license number."]
         },
-        insuranceNumber:{
-            type:String,
-            // required:[true, "Please add insurance number."]
-        },
         vehicleNumber:{
             type:String,
-            required:[true, "Please add vehicle number."]
-        },
-        puc:{
-            type:String,
+            required:[true, "Please add vehicle number."],
+            unique: true
         },
         dlValidity:{
            type:Date,
@@ -35,11 +30,11 @@ const employeeVehicleSchema = new mongoose.Schema(
         rcValidity:{
             type:Date,
          },
-        pucValidity:{
-            type:Date,
+        pucExpiry:{
+            type:String,
          },
-        insuranceValidity:{
-            type:Date,
+        insuranceExpiry:{
+            type:String,
          },
          vehicleType:{
             type:String,

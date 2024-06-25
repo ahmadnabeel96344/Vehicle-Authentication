@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="flex justify-start items-start w-screen h-screen">
       {/* left part */}
-      <div className="flex w-[50%] gap-x-5 bg-gray-5 justify-center items-center h-screen">
+      <div className="flex w-full  lg:w-[50%] gap-x-5 bg-gray-5 justify-center items-center h-screen">
         <NavLink to="/scanqr">
           <button className="btn ">
             Scan QR
