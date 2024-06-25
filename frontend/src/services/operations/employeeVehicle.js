@@ -50,11 +50,11 @@ export const addEmployeeVehicle = async (data) => {
       console.log(" GET_EMPLOYEE_VEHICLE_INFO_API_RESPONSE  - ", response);
       result = response?.data?.vehicleInfo !== null ? response?.data?.vehicleInfo : {};
 
-      if(result){
-        toast.success("Access Granted")
-      }else{
-        toast.error("Access Denied")
-      }
+      // if(result){
+      //   toast.success("Access Granted")
+      // }else{
+      //   toast.error("Access Denied")
+      // }
     } catch (error) {
       console.error("  GET_EMPLOYEE_VEHICLE_INFO_API_RESPONSE_RESPONSE  - ", error);
       toast.error(error.message);
