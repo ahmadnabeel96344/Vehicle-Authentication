@@ -134,7 +134,7 @@ function ScanQR() {
                   <button
                     onClick={() => {
                       setIsQrScanned(null);
-                      setUpdateScanner(true);
+                      setUpdateScanner(prev => !prev);
                     }}
                     className="btn"
                   >
